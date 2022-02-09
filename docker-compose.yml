@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  finalprojectnucamp:
+    image: finalprojectnucamp
+    build: ./src
+    ports:
+      - 5001:5001
+    command: flask run
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./database:/data/db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
